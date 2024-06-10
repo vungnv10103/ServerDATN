@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    #main-wrapper.page-wrapper(data-layout='vertical' data-navbarbg='skin6' data-sidebartype='full' data-sidebar-position='fixed' data-header-position='fixed')
+        .position-relative.overflow-hidden.radial-gradient.min-vh-100.d-flex.align-items-center.justify-content-center
+            .d-flex.align-items-center.justify-content-center.w-100
+                .row.justify-content-center.w-100
+                    .col-md-8.col-lg-6.col-xxl-3
+                        .card.mb-0
+                            .card-body
+                                a.text-nowrap.logo-img.text-center.d-block.py-3.w-100(href='/stech.manager/home')
+                                    img(src='/images/logos/logo.jpeg' width='180' alt='')
+                                p.text-center Your Social Campaigns
+                                form
+                                    .mb-3
+                                        label.form-label(for='full_name') Name
+                                        input#full_name.form-control(type='text' aria-describedby='textHelp')
+                                    .mb-3
+                                        label.form-label(for='phone_number') Phone Number
+                                        input#phone_number.form-control(type='phone' aria-describedby='phoneHelp')
+                                    .mb-3
+                                        label.form-label(for='email') Email Address
+                                        input#email.form-control(type='email' aria-describedby='emailHelp')
+                                    .mb-4
+                                        label.form-label(for='password') Password
+                                        input#password.form-control(type='password')
+                                    a#registerButton.btn.btn-primary.w-100.py-8.fs-4.mb-4.rounded-2 Sign Up
+                                    .d-flex.align-items-center.justify-content-center
+                                        p.fs-4.mb-0.fw-bold Already have an Account?
+                                        a.text-primary.fw-bold.ms-2(href='/stech.manager/login') Sign In
+    script(src='/js/register.js')

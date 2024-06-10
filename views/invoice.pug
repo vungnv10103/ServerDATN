@@ -1,0 +1,176 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='/css/style_invoice.css')
+    #main-wrapper.page-wrapper(data-layout='vertical' data-navbarbg='skin6' data-sidebartype='full' data-sidebar-position='fixed' data-header-position='fixed')
+        Sidebar
+            aside.left-sidebar
+                // Sidebar scroll
+                div
+                    .brand-logo.d-flex.align-items-center.justify-content-between
+                        a.text-nowrap.logo-img(href='/stech.manager/home')
+                            img(src='/images/logos/logo.jpeg' width='180' alt='')
+                        #sidebarCollapse.close-btn.d-xl-none.d-block.sidebartoggler.cursor-pointer
+                            i.ti.ti-x.fs-8
+                    // Sidebar navigation
+                    nav.sidebar-nav.scroll-sidebar(data-simplebar='')
+                        ul#sidebarnav
+                            li.nav-small-cap
+                                i.ti.ti-dots.nav-small-cap-icon.fs-4
+                                span.hide-menu Home
+                            li.sidebar-item
+                                a.sidebar-link(href='/stech.manager/home' aria-expanded='false')
+                                    span
+                                        i.ti.ti-layout-dashboard
+                                    span.hide-menu Dashboard
+                            li.nav-small-cap
+                                i.ti.ti-dots.nav-small-cap-icon.fs-4
+                                span.hide-menu Manager
+                            li.sidebar-item
+                                a.sidebar-link(href='/stech.manager/product' aria-expanded='false')
+                                    span
+                                        i.ti.ti-brand-producthunt
+                                    span.hide-menu Product
+                            li.sidebar-item
+                                a.sidebar-link(href='/stech.manager/category' aria-expanded='false')
+                                    span
+                                        i.ti.ti-category
+                                    span.hide-menu Category
+                            li.sidebar-item
+                                a.sidebar-link(href='/stech.manager/cart' aria-expanded='false')
+                                    span
+                                        i.ti.ti-shopping-cart
+                                    span.hide-menu Cart
+                            li.sidebar-item
+                                a.sidebar-link(href='/stech.manager/chat' aria-expanded='false')
+                                    span
+                                        i.ti.ti-message-chatbot
+                                    span.hide-menu Chat
+                            li.sidebar-item
+                                a.sidebar-link(href='/stech.manager/notification' aria-expanded='false')
+                                    span
+                                        i.ti.ti-notification
+                                    span.hide-menu Notification
+                            li.sidebar-item
+                                a.sidebar-link(href='/stech.manager/customer' aria-expanded='false')
+                                    span
+                                        i.ti.ti-cards
+                                    span.hide-menu Customer
+                            li.sidebar-item
+                                a.sidebar-link(href='/stech.manager/order' aria-expanded='false')
+                                    span
+                                        i.ti.ti-file-description
+                                    span.hide-menu Order
+                            li.sidebar-item
+                                a.sidebar-link(href='/stech.manager/voucher' aria-expanded='false')
+                                    span
+                                        i.ti.ti-file-description
+                                    span.hide-menu Voucher
+                            li.sidebar-item
+                                a.sidebar-link(href='/stech.manager/banner' aria-expanded='false')
+                                    span
+                                        i.ti.ti-file-import
+                                    span.hide-menu Banner
+                            li.nav-small-cap
+                                i.ti.ti-dots.nav-small-cap-icon.fs-4
+                                span.hide-menu AUTH
+                            li.sidebar-item
+                                a.sidebar-link(href='/stech.manager/type_login' aria-expanded='false')
+                                    span
+                                        i.ti.ti-login
+                                    span.hide-menu Login
+                            li.sidebar-item
+                                a.sidebar-link(href='/stech.manager/register' aria-expanded='false')
+                                    span
+                                        i.ti.ti-user-plus
+        .body-wrapper
+            // Header Start
+            header
+                nav.navbar
+                    #navbarNav.navbar-collapse.justify-content-end.me-5
+                        ul.navbar-nav.flex-row.align-items-center.justify-content-end
+                            button.btn.btn-primary.float-right(style='padding: 15px', onclick='window.print()', class='print-button')
+                                i.fa.fa-print
+        body
+            .body-wrapper.mt-4
+                .row
+                    .col-md-12.d-flex.align-items-center.justify-content-center
+                        .receipt-main.col-md-9
+                            .row
+                                .receipt-header
+                                    .col-xs-6.col-sm-6.col-md-6
+                                        .receipt-left
+                                            img.img-responsive(alt='iamgurdeeposahan', src='https://bootdey.com/img/Content/avatar/avatar6.png', style='width: 71px; border-radius: 43px;')
+                            .row
+                                .receipt-header.receipt-header-mid
+                                    .col-xs-8.col-sm-8.col-md-8.text-left
+                                        .receipt-right
+                                            h5= guestName
+                                            p
+                                                b Phone Number :
+                                                |  #{guestPhone}
+                                            p
+                                                b Address :
+                                                |  #{guestAddress}
+                            div
+                                table.table
+                                    thead
+                                        tr.text-muted
+                                            th Sản phẩm
+                                            th Số lượng
+                                            th Số tiền
+                                    tbody
+                                        each product in products
+                                            tr
+                                                td.col-md-7= product.product_name
+                                                td.col-md-2
+                                                    i.fa.fa-inr
+                                                    | #{product.quantity}
+                                                td.col-md-3
+                                                    i.fa.fa-inr
+                                                    | #{Intl.NumberFormat('vi-VN').format(product.quantity * product.product_price) + ' VND'}
+                                        tr
+                                            td.text-left.text-muted
+                                                p
+                                                    strong Tổng cộng:
+                                            td
+                                            td.text-muted
+                                                p
+                                                    strong
+                                                        i.fa.fa-inr
+                                                        |
+                                                        if products && products.length > 0
+                                                            // Tính tổng giá trị của các sản phẩm
+                                                            - var totalPrice = products.reduce(function (total, product) {
+                                                            - return total + (product.quantity * product.product_price);
+                                                            - }, 0);
+                                                            = Intl.NumberFormat('vi-VN').format(totalPrice) + ' VND'
+                                        tr
+                                            td.text-right.text-muted
+                                                h2
+                                                    strong Thành tiền:
+                                            td
+                                            td.text-left.text-danger
+                                                h2
+                                                    strong
+                                                        i.fa.fa-inr
+                                                        |
+                                                        if products && products.length > 0
+                                                            // Tính tổng giá trị của các sản phẩm
+                                                            - var totalPrice = products.reduce(function (total, product) {
+                                                            - return total + (product.quantity * product.product_price);
+                                                            - }, 0);
+                                                            = Intl.NumberFormat('vi-VN').format(totalPrice + 0.1 * totalPrice) + ' VND'
+                            .row
+                                .receipt-header.receipt-header-mid.receipt-footer
+                                    .col-xs-8.col-sm-8.col-md-8.text-left
+                                        .receipt-right
+                                            p
+                                                b(id='dateTime') Date :
+                                            h4(style='color: red;') Thanks for shopping.!
+
+                script(data-cfasync='false', src='/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js')
+                script(src='https://code.jquery.com/jquery-1.10.2.min.js')
+                script(src='https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+                script(src='/js/invoice.js')
+

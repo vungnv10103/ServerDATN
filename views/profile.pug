@@ -1,0 +1,102 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        |
+        title Profile
+        |
+        link(rel='shortcut icon' type='image/png' href='/images/logos/logo.jpeg')
+        |
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        |
+        link(href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css', rel='stylesheet')
+        |
+        link(href='/css/style_profile.css', rel='stylesheet')
+    body
+        .container
+            .main-body
+                a.page-link(href='#')
+                .row
+                    if profiles
+                    .col-lg-12
+                        form(action="/stech.manager/editUser" method="post" enctype='multipart/form-data')
+                            .card
+                                .card-body
+                                    .d-flex.flex-column.align-items-center.text-center
+                                        img.rounded-circle.p-1.bg-primary(src=profiles.avatar, alt='Admin', width='110')
+                                        input#avatarUp.mb-2(type="file", name="avatar", accept="image/*")
+                                    |
+                                    .row.mb-3
+                                        |
+                                        .col-sm-3
+                                            h6.mb-0 Full Name
+                                        |
+                                        .col-sm-9.text-secondary
+                                            input#full_nameUp.form-control(type='text', name="full_name" value=profiles.full_name placeholder="Full name")
+                                    |
+                                    .row.mb-3
+                                        .col-sm-3
+                                            h6.mb-0 password
+                                        |
+                                        .col-sm-9.text-secondary
+                                            input#passwordUp.form-control(type='text', name="password" value=profiles.password placeholder="password")
+                                    |
+                                    .row.mb-3
+                                        .col-sm-3
+                                            h6.mb-0 Email
+                                        |
+                                        .col-sm-9.text-secondary
+                                            input#emailUp.form-control(type='email', name="email" value=profiles.email placeholder="Email")
+                                    |
+                                    .row.mb-3
+                                        .col-sm-3
+                                            h6.mb-0 Phone
+                                        |
+                                        .col-sm-9.text-secondary
+                                            input#phone_numberUp.form-control(type='phone', name="phone_number" value=profiles.phone_number placeholder="Phone number")
+                                    |
+                                    .row.mb-3
+                                        .col-sm-3
+                                            h6.mb-0 Address
+                                        |
+                                        .col-sm-9.text-secondary
+                                            input#addressUp.form-control(type='text', name="address" placeholder="Address", value=(profiles.address && profiles.address[0] && profiles.address[0].city !== null ? profiles.address[0].city : 'Chưa có địa chỉ'), readonly)
+                                    |
+                                    .card-body
+                                        ul.list-group.list-group-flush
+                                            li.list-group-item.d-flex.justify-content-between.align-items-center.flex-wrap
+                                                h6.mb-0
+                                                    svg.feather.feather-globe.me-2.icon-inline(xmlns='http://www.w3.org/2000/svg', width='24', height='24', viewBox='0 0 24 24', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                                                        circle(cx='12', cy='12', r='10')
+                                                        line(x1='2', y1='12', x2='22', y2='12')
+                                                        path(d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z')
+                                                    | Website
+                                                |
+                                                span.text-secondary http://stech.manager/profile
+                                            |
+                                            li.list-group-item.d-flex.justify-content-between.align-items-center.flex-wrap
+                                                h6.mb-0
+                                                    svg.feather.feather-github.me-2.icon-inline(xmlns='http://www.w3.org/2000/svg', width='24', height='24', viewBox='0 0 24 24', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                                                        path(d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22')
+                                                    | Github
+                                                |
+                                                span.text-secondary https://github.com/HTNMinh1910
+                                            |
+                                            li.list-group-item.d-flex.justify-content-between.align-items-center.flex-wrap
+                                                h6.mb-0
+                                                    svg.feather.feather-facebook.me-2.icon-inline.text-primary(xmlns='http://www.w3.org/2000/svg', width='24', height='24', viewBox='0 0 24 24', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+                                                        path(d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z')
+                                                    | Facebook
+                                                |
+                                                span.text-secondary facebook.com
+                                    .row
+                                        .col-sm-3
+                                        |
+                                        .col-sm-9.text-secondary
+                                            a.btn.btn-outline-danger.px-4(href='/stech.manager/home' type='button') Exit
+                                            button.btn.btn-outline-success.px-4(type='submit', value='Save Changes') Save
+        script(src='https://code.jquery.com/jquery-1.10.2.min.js')
+        script(src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js')
+    script(src='/js/utils.js')
+    script(src='/js/profile.js')
+

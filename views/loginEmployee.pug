@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    #main-wrapper.page-wrapper(data-layout='vertical', data-navbarbg='skin6', data-sidebartype='full', data-sidebar-position='fixed', data-header-position='fixed')
+        .position-relative.overflow-hidden.radial-gradient.min-vh-100.d-flex.align-items-center.justify-content-center
+            .d-flex.align-items-center.justify-content-center.w-100
+                .row.justify-content-center.w-100
+                    .col-md-8.col-lg-6.col-xxl-3
+                        .card.mb-0
+                            .card-body
+                                a.text-nowrap.logo-img.text-center.d-block.py-3.w-100(href='/stech.manager/home')
+                                    img(src='/images/logos/logo.jpeg' width='180' alt='')
+                                p.text-center Login Your Account Employee
+                                form
+                                    .mb-3
+                                        label.form-label(for='username') Username
+                                        input#username.form-control(name='username' type='email' aria-describedby='emailHelp')
+                                    .mb-4
+                                        label.form-label(for='password') Password
+                                        input#password.form-control(name='password' type='password')
+                                    .d-flex.align-items-center.justify-content-between.mb-4
+                                        .form-check
+                                            input#isRemember.form-check-input.primary(type='checkbox' value='' checked='')
+                                            label.form-check-label.text-dark(for='isRemember') Remember this Device
+                                        a.text-primary.fw-bold(href='#') Forgot Password ?
+                                    a#loginButton.btn.btn-primary.w-100.py-8.fs-4.mb-4.rounded-2(href="/stech.manager/loginAdmin") Sign In

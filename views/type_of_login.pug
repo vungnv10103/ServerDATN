@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    #main-wrapper.page-wrapper(data-layout='vertical', data-navbarbg='skin6', data-sidebartype='full', data-sidebar-position='fixed', data-header-position='fixed')
+        .position-relative.overflow-hidden.radial-gradient.min-vh-100.d-flex.align-items-center.justify-content-center
+            .d-flex.align-items-center.justify-content-center.w-100
+                .row.justify-content-center.w-100
+                    .col-md-8.col-lg-6.col-xxl-3
+                        .card.mb-0
+                            .card-body
+                                a.text-nowrap.logo-img.text-center.d-block.py-3.w-100(href='/stech.manager/home')
+                                    img(src='/images/logos/logo.jpeg' width='180' alt='')
+
+                                    a#withAdminButton.btn.btn-danger.w-100.py-8.fs-4.mb-4.rounded-2 Admin
+                                    a#withEmployeeButton.btn.btn-primary.w-100.py-8.fs-4.mb-4.rounded-2 Employee
+    script(src='/js/type_of_login.js')

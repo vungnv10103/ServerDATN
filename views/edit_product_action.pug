@@ -1,0 +1,92 @@
+doctype html
+head
+    meta(charset='utf-8')
+    title Create new product
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    script(src='https://unpkg.com/swiper/swiper-bundle.min.js')
+    link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet')
+    link(href='/css/product_action.css' rel='stylesheet')
+.container-fluid
+    .container
+        form(method="post" action="/stech.manager/EditProduct" enctype='multipart/form-data')
+            a#cancel.btn.btn-outline-dark(href='/stech.manager/product') Cancel
+            button#save.btn.btn-outline-success(type='submit') Save
+            .row
+                .col-lg-8
+                    .card.mb-4
+                        .card-body
+                            h3.h6.mb-4 Basic information
+                            .row
+                                .col-lg-6
+                                    .mb-3
+                                        label.form-label Product name
+                                        input#name.form-control(type='text' placeholder='Enter product name hear...' name="name" value = products.name required)
+                                .col-lg-6
+                                    .mb-3
+                                        label.form-label Price
+                                        input#price.form-control(type='number' placeholder='Enter price hear...' min='0'  name="price" value = products.price required)
+                            .row
+                                .col-lg-6
+                                    .mb-3
+                                        label.form-label Quantity
+                                        input#quantity.form-control(type='number' min='0' value=products.quantity placeholder='Enter quantity hear...' name="quantity"  required)
+                                .col-lg-6
+                                    .mb-3
+                                        label.form-label Color
+                                        input#color.form-control(type='text' placeholder='Enter color hear...' name="color" value=products.color required)
+                                    .mb-3
+                                        label.form-label Color_Code
+                                        input#color_code.form-control(type='color' placeholder='Enter color hear...' name="color_code" required )
+                            .row
+                                .col-lg-6
+                                    .mb-3
+                                        label.form-label Ram
+                                        input#ram.form-control(type='text' placeholder='Enter Ram hear...' name="ram" value=products.ram)
+                                .col-lg-6
+                                    .mb-3
+                                        label.form-label Rom
+                                        input#rom.form-control(type='text' placeholder='Enter Rom hear...' name="rom" value=products.rom)
+                                .col-lg-6.d-none
+                                    .mb-3
+                                        input#idProduct.form-control(type='text' name="productId" value=products._id)
+
+
+                    .card.mb-4
+                        .card-body
+                            h3.h6.mb-4 Details Product
+                            .mb-3
+                                label.form-label Description
+                                textarea#description.form-control(placeholder='Enter description hear...' rows='4' name="description" required)
+                                    | #{products.description}
+                .col-lg-4
+                    .card.mb-4
+                        .card-body
+                            h3.h6 Category
+                            input#keyword.form-control(placeholder='Search and select category hear...' autocomplete='off' required type='text' value=products.category_id name="category_id")
+                            div#categoryDropdown.dropdown-content(style='display: none')
+                                each cate in categories
+                                    div.dropdown-item(class="dropdown_item" data-id=cate._id )
+                                        img(src=`${cate.img_cover}` alt=`${cate.name}` style='width:40px')
+                                        span #{cate.name}
+                    .card.mb-4
+                        .card-body
+                            h3.h6 Product avatar
+                            img#product_avatar.form-control(width='250' height='200')
+                            input#img_cover.form-control(type='file'  accept='image/*' name='img_cover'  required)
+                    .card.mb-4
+                        .card-body
+                            h3.h6 Product video
+                            video#video_product.form-control(controls='' width='250' height='200')
+                            input#video.form-control(type='file' accept='video/*' name="video" required)
+                    .card.mb-4
+                        .card-body
+                            h3.h6 Product image description
+                            .mb-2
+                                #imageList.swiper-container.form-control
+                                    .swiper-wrapper
+                                input#list_img.form-control(type='file' accept='image/*' multiple='' name="list_img" required)
+    script(src='https://code.jquery.com/jquery-1.10.2.min.js')
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js')
+    script(src='/js/edit_product_action.js')
+    script(src=`https://unpkg.com/axios/dist/axios.min.js`)
+

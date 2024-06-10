@@ -1,0 +1,176 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='/css/style_cart.css')
+    #main-wrapper.page-wrapper(data-layout='vertical' data-navbarbg='skin6' data-sidebartype='full' data-sidebar-position='fixed' data-header-position='fixed')
+        // Sidebar Start
+        aside.left-sidebar
+            // Sidebar scroll
+            div
+                .brand-logo.d-flex.align-items-center.justify-content-between
+                    a.text-nowrap.logo-img(href='/stech.manager/home')
+                        img(src='/images/logos/logo.jpeg' width='180' alt='')
+                    #sidebarCollapse.close-btn.d-xl-none.d-block.sidebartoggler.cursor-pointer
+                        i.ti.ti-x.fs-8
+                // Sidebar navigation
+                nav.sidebar-nav.scroll-sidebar(data-simplebar='')
+                    ul#sidebarnav
+                        li.nav-small-cap
+                            i.ti.ti-dots.nav-small-cap-icon.fs-4
+                            span.hide-menu Home
+                        li.sidebar-item
+                            a.sidebar-link(href='/stech.manager/home' aria-expanded='false')
+                                span
+                                    i.ti.ti-layout-dashboard
+                                span.hide-menu Dashboard
+                        li.nav-small-cap
+                            i.ti.ti-dots.nav-small-cap-icon.fs-4
+                            span.hide-menu Manager
+                        li.sidebar-item
+                            a.sidebar-link(href='/stech.manager/product' aria-expanded='false')
+                                span
+                                    i.ti.ti-brand-producthunt
+                                span.hide-menu Product
+                        li.sidebar-item
+                            a.sidebar-link(href='/stech.manager/category' aria-expanded='false')
+                                span
+                                    i.ti.ti-category
+                                span.hide-menu Category
+                        li.sidebar-item
+                            a.sidebar-link(href='/stech.manager/cart' aria-expanded='false')
+                                span
+                                    i.ti.ti-shopping-cart
+                                span.hide-menu Cart
+                        li.sidebar-item
+                            a.sidebar-link(href='/stech.manager/chat' aria-expanded='false')
+                                span
+                                    i.ti.ti-message-chatbot
+                                span.hide-menu Chat
+                        li.sidebar-item
+                            a.sidebar-link(href='/stech.manager/notification' aria-expanded='false')
+                                span
+                                    i.ti.ti-notification
+                                span.hide-menu Notification
+                        li.sidebar-item
+                            a.sidebar-link(href='/stech.manager/customer' aria-expanded='false')
+                                span
+                                    i.ti.ti-cards
+                                span.hide-menu Customer
+                        li.sidebar-item
+                            a.sidebar-link(href='/stech.manager/order' aria-expanded='false')
+                                span
+                                    i.ti.ti-file-description
+                                span.hide-menu Order
+                        li.sidebar-item
+                            a.sidebar-link(href='/stech.manager/banner' aria-expanded='false')
+                                span
+                                    i.ti.ti-file-import
+                                span.hide-menu Banner
+                        li.nav-small-cap
+                            i.ti.ti-dots.nav-small-cap-icon.fs-4
+                            span.hide-menu AUTH
+                        li.sidebar-item
+                            a.sidebar-link(href='/stech.manager/type_login' aria-expanded='false')
+                                span
+                                    i.ti.ti-login
+                                span.hide-menu Login
+                        li.sidebar-item
+                            a.sidebar-link(href='/stech.manager/register' aria-expanded='false')
+                                span
+                                    i.ti.ti-user-plus
+                                span.hide-menu Register
+                // End Sidebar navigation
+            // End Sidebar scroll
+        // Sidebar End
+        // Main wrapper
+        .body-wrapper
+            // Header Start
+            header.app-header
+                nav.navbar.navbar-expand-lg.navbar-light
+                    ul.navbar-nav
+                        li.nav-item.d-block.d-xl-none
+                            a#headerCollapse.nav-link.sidebartoggler.nav-icon-hover(href='javascript:void(0)')
+                                i.ti.ti-menu-2
+                    #navbarNav.navbar-collapse.justify-content-end.px-0
+                        ul.navbar-nav.flex-row.ms-auto.align-items-center.justify-content-end
+                            li.nav-item.dropdown
+                                a#drop2.nav-link.nav-icon-hover(href='javascript:void(0)' data-bs-toggle='dropdown' aria-expanded='false')
+                                    img.rounded-circle(src='/images/logos/logo.jpeg' alt='' width='35' height='35')
+                                .dropdown-menu.dropdown-menu-end.dropdown-menu-animate-up(aria-labelledby='drop2')
+                                    .message-body
+                                        a.d-flex.align-items-center.gap-2.dropdown-item(href='/stech.manager/profile')
+                                            i.ti.ti-user.fs-6
+                                            p.mb-0.fs-3 My Profile
+                                        a.d-flex.align-items-center.gap-2.dropdown-item(href='javascript:void(0)')
+                                            i.ti.ti-mail.fs-6
+                                            p.mb-0.fs-3 My Account
+                                        a.d-flex.align-items-center.gap-2.dropdown-item(href='javascript:void(0)')
+                                            i.ti.ti-list-check.fs-6
+                                            p.mb-0.fs-3 My Task
+                                        a#logout.btn.btn-outline-primary.mx-3.mt-2.d-block(href='/stech.manager/login') Logout
+            // Header End
+            .container-fluid
+                .container.px-3.my-3.clearfix
+                    .card
+                        .card-body
+                            .table-responsive
+                                table.table.table-bordered.m-0
+                                    thead
+                                        tr
+                                            th.text-center.py-3.px-4(style='min-width: 400px;') Product
+                                            th.text-right.py-3.px-4(style='width: 100px;') Price
+                                            th.text-center.py-3.px-4(style='width: 120px;') Quantity
+                                            th.text-right.py-3.px-4(style='width: 100px;') Total
+                                    tbody
+                                        each product in products
+                                            tr
+                                                td.p-4
+                                                    .media.align-items-center
+                                                        img#imgCoverUp.d-block.ui-w-40.ui-bordered.mr-4(src=product.img_cover alt='')
+                                                        .media-body
+                                                            a#titleUp.d-block.text-dark= product.product_name
+                                                            small
+                                                                span.text-muted(style='display: inline-block; margin-left: 5px;') Color:
+                                                                    a#titleUp.d-block.text-dark(style='display: inline-block; margin-left: 5px;')= product.product_color
+                                                                span.text-muted(style='display: inline-block; margin-left: 5px;') ram:
+                                                                    i#titleUp.d-block.text-dark(style='display: inline-block; margin-left: 5px;')= product.product_ram ? product.product_ram : 'không có'
+                                                                span.text-muted(style='display: inline-block; margin-left: 5px;') rom:
+                                                                    i#titleUp.d-block.text-dark(style='display: inline-block; margin-left: 5px;')= product.product_rom ? product.product_rom : 'không có'
+                                                                span.d-none.text-muted(style='display: inline-block; margin-left: 5px;')
+                                                                    a.d-block.text-dark(style='display: inline-block; margin-left: 5px;', class = 'idCartProduct' data_id = product._id)= product._id
+                                                td#priceUp.text-right.font-weight-semibold.align-middle.p-4(style='width: 180px') #{Intl.NumberFormat('vi-VN').format(product.product_price)} VND
+                                                td#priceUp.text-right.font-weight-semibold.align-middle.p-4= product.quantity
+                                                button.d-none.btn.btn-danger(type='button' id = 'product' value = products)
+
+                                                td#total.text-right.font-weight-semibold.align-middle.p-4( style='width: 180px' class='total-checkbox' data-id=product._id data-value=product.quantity * product.product_price) #{Intl.NumberFormat('vi-VN').format(product.quantity * product.product_price)} VND
+                                .mb-3.mt-3
+                                    label.form-label(for='full_name') Tên khách hàng
+                                    input#full_name.form-control(placeholder='Nhập tên khách hàng', type='text', aria-describedby='textHelp')
+                                .mb-3
+                                    label.form-label(for='phone_number') Số điện thoại
+                                    input#phone_number.form-control(placeholder='Nhập số điện thoại', type='number', aria-describedby='textHelp')
+                                .mb-3
+                                    label.form-label(for='address') Đia chỉ
+                                    input#address.form-control(placeholder='Nhập địa chỉ', type='text', aria-describedby='textHelp')
+                                h4.mt-3 Tổng tiền:
+                                    span.ms-2#total-display
+                                        if products && products.length > 0
+                                            // Tính tổng giá trị của các sản phẩm
+                                            - var totalPrice = products.reduce(function (total, product) {
+                                            - return total + (product.quantity * product.product_price);
+                                            - }, 0);
+                                            = Intl.NumberFormat('vi-VN').format(totalPrice) + ' VND'
+                            .float-end
+                                button.btn.btn-lg.btn.btn-success.mt-2(type='button' id='openModalConfirm') Thanh toán
+                #ConfirmModal.modal(tabindex='-1')
+                    .modal-dialog
+                        .modal-content
+                            .modal-header
+                                h5.modal-title Thanh toán
+                            .modal-body
+                                p Bạn có chắc chắn muốn thanh toán đơn hàng?
+                            .modal-footer
+                                button.btn.btn-dark(type='button' data-bs-dismiss='modal') Quay lại
+                                button.btn.btn-danger(type='button' id = 'buttonConfirm') Đồng ý
+        script(src=`https://unpkg.com/axios/dist/axios.min.js`)
+        script(src='/js/pay.js')

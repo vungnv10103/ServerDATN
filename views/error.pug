@@ -1,0 +1,22 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Simple 404 error page - Bootdey.com
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(href='https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/css/error.css', rel='stylesheet')
+  body
+    .container.bootstrap.snippets.bootdey
+      .row
+        .col-md-12
+          .pull-right(style='margin-top:10px;')
+            .col-md-10.col-md-offset-1.pull-right
+              img.img-error(src='https://bootdey.com/img/Content/fdfadfadsfadoh.png')
+              .error-actions
+                h2= message
+                  h3= error.status
+                  pre #{error.stack}
+                a.btn.btn-primary.btn-lg(href='/stech.manager/home')
+                  span.glyphicon.glyphicon-arrow-left
+                  | Back Home

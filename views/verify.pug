@@ -1,0 +1,24 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title OTP Verification Form
+  link(rel='shortcut icon' type='image/png' href='/images/logos/logo.jpeg')
+  link(rel='stylesheet' href='/css/style_verify.css')
+  script(src='/js/verify.js')
+  script(src='/js/utils.js')
+  script(src="https://unpkg.com/axios/dist/axios.min.js")
+  .container
+    header
+      i.bx.bxs-check-shield
+    h4 Enter OTP Code
+    form
+      .input-field
+        input(type='number')
+        input(type='number' disabled='')
+        input(type='number' disabled='')
+        input(type='number' disabled='')
+        input(type='number' disabled='')
+        input(type='number' disabled='')
+      button(type="button") Verify OTP
